@@ -10,7 +10,7 @@ pipeline {
         stage ('Artifactory configuration') {
             steps {
                 rtServer (
-                    id: "ARTIFACTORY_SERVER",
+                    id: "jfrog-platform",
                     url: "http://13.127.189.46:8082",
                     credentialsId: "jfrogcreds",
                 )
