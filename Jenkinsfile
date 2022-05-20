@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Clone') {
             steps {
-                git branch: 'master', url: "https://github.com/jfrog/project-examples.git"
+                git branch: 'master', url: "https://github.com/jalandharbehera99/Lincoln-Project.git"
             }
         }
 
@@ -11,20 +11,20 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: SERVER_URL,
-                    credentialsId: CREDENTIALS
+                    url: "http://13.127.189.46:8082"
+                    credentialsId: "jfrogcreds"
                 )
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "http://13.127.189.46:8082"
                     releaseRepo: ARTIFACTORY_LOCAL_RELEASE_REPO,
                     snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
+                    serverId: "http://13.127.189.46:8082"
                     releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
                     snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
                 )
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 rtMavenRun (
                     tool: MAVEN_TOOL, // Tool name from Jenkins configuration
-                    pom: 'maven-examples/maven-example/pom.xml',
+                    pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
@@ -46,7 +46,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
+                    serverId: "13.127.189.46:8082"
                 )
             }
         }
