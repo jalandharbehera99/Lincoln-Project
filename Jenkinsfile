@@ -11,22 +11,22 @@ pipeline {
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: "http://13.127.189.46:8082"
-                    credentialsId: "jfrogcreds"
+                    url: "http://13.127.189.46:8082",
+                    credentialsId: "jfrogcreds",
                 )
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
-                    serverId: "http://13.127.189.46:8082"
+                    serverId: "http://13.127.189.46:8082",
                     releaseRepo: ARTIFACTORY_LOCAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO
+                    snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO,
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
-                    serverId: "http://13.127.189.46:8082"
+                    serverId: "http://13.127.189.46:8082",
                     releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
+                    snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO,
                 )
             }
         }
