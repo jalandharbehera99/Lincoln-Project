@@ -18,15 +18,15 @@ pipeline {
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "http://13.127.189.46:8082",
-                    releaseRepo: ARTIFACTORY_LOCAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_LOCAL_SNAPSHOT_REPO,
+                    releaseRepo: http://13.127.189.46:8081/artifactory/lincoln_artifacts,
+                    snapshotRepo: http://13.127.189.46:8081/artifactory/lincoln_artifacts,
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "http://13.127.189.46:8082",
-                    releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
-                    snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO,
+                    releaseRepo: http://13.127.189.46:8081/artifactory/lincoln_artifacts,
+                    snapshotRepo: http://13.127.189.46:8081/artifactory/lincoln_artifacts,
                 )
             }
         }
