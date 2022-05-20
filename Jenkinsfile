@@ -46,7 +46,7 @@ pipeline {
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "http://13.127.189.46:8082/artifactory/"
+                    serverId: "http://13.127.189.46:8082"
                 )
             }
         }
